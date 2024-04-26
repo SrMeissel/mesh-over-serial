@@ -2,7 +2,8 @@
 
 #include <SoftwareSerial.h>
 
-SoftwareSerial HC12(10, 11); // RX, TX
+// trying to swap pins, it works, TX then RX!
+SoftwareSerial HC12(8, 10); // RX, TX
 
 void setup() {
   // put your setup code here, to run once:
@@ -20,3 +21,28 @@ void loop() {
     HC12.write(Serial.read());      // Send that data to HC-12
   }
 }
+
+// encode JSON message
+// JSON sucks, just write header protocol
+
+// send entire message at once
+// look into protocals for sending messages
+
+// include message ID
+// include a device ID as part of message ID
+// if receive message with knwon ID, throw it away
+// if receive message with unknown ID, store it and send it out again
+
+// include message jump count
+// if receive message with jump count less than max jumps increment jump count and send it out again
+
+// what if two devices send a message at the same time?
+// all devices have multiple channels, perhaps hop channels after each message?
+
+// designate Gateways, Repeaters, and Endpoints.
+// Gateways dont repeat messages
+// Endpoints dont receive messages
+// Repeaters repeat messages, surprise
+// this may reduce the chance of receiving multiple messages at once
+
+//or perhaps just gateways and repeaters
